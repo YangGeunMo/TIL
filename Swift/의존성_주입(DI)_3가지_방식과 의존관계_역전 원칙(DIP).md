@@ -111,5 +111,7 @@ let naverLogin : LoginManager2 = LoginManager2(service: NaverLogin())
 ## **느낀 점**
 - 세 방식을 단계별로 직접 구현해보니 중복을 최소화할 수 있는 인터페이스 주입이 왜 좋은지 체감됐다.
 
+## Reference
+- kxcoding의 Mastering iOS 강의
 
 
