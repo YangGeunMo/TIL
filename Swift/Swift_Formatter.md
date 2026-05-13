@@ -1,8 +1,9 @@
 # Swift Formatter
 
-Foundation 프레임워크의 추상 기반 클래스로 데이터를 문자열로 또는 문자열을 데이터로 변환하는 기능을 담당한다. Formatter 자체는 직접 사용하지 않고 서브클래스를 사용하는 것이 핵심이다.
+데이터를 문자열로 또는 문자열을 데이터로 변환하는 기능이다. 
 
----
+## 학습일
+- 2026-05-13
 
 ## DateFormatter
 
@@ -127,46 +128,6 @@ formatter.string(from: 29900 as NSNumber) //29,900.00달러
 formatter.locale = Locale(identifier: "ja_JP")
 formatter.string(from: 29900 as NSNumber) //29,900엔
 ```
-
-### 계산 프로퍼티와 함께 사용
-
-Formatter는 인스턴스 생성 비용이 크므로 static let으로 한 번만 생성해서 재사용한다.
-
-```swift
-struct Product {
-    let name: String
-    let price: Int
-    let discountRate: Double
-
-    private static let priceFormatter: NumberFormatter = {
-        let f = NumberFormatter()
-        f.numberStyle = .currency
-        f.locale = Locale(identifier: "ko_KR")
-        return f
-    }()
-
-    private static let discountFormatter: NumberFormatter = {
-        let f = NumberFormatter()
-        f.numberStyle = .percent
-        f.maximumFractionDigits = 0
-        return f
-    }()
-
-    var formattedPrice: String {
-        Self.priceFormatter.string(from: price as NSNumber) ?? "\(price)원"
-    }
-
-    var formattedDiscount: String {
-        Self.discountFormatter.string(from: discountRate as NSNumber) ?? ""
-    }
-}
-
-let item = Product(name: "에어팟", price: 179000, discountRate: 0.1)
-print(item.price)           //179000 계산에 사용
-print(item.formattedPrice)  //179,000원 화면에 표시
-```
-
----
 
 ## DateComponentsFormatter
 
