@@ -79,7 +79,29 @@ Delete  →  context.delete  →           →  save()
 ※ Read는 save() 불필요
 ※ Create · Update · Delete는 반드시 save() 필요
 ```
+## EntityName vs ClassName
 
+```
+.xcdatamodeld                      Swift 코드
+┌─────────────────┐                ┌──────────────────────────┐
+│  Entity: "Memo" │  ──연결──▶      │  class MemoEntity        │
+│  - content      │                │  : NSManagedObject       │
+│  - insertDate   │                └──────────────────────────┘
+└─────────────────┘
+EntityName (DB 식별자)               ClassName(Swift 타입)
+                          
+```
+
+- **EntityName** : `.xcdatamodeld` 에서 정의한 데이터 모델의 이름. CoreData가 DB에서 데이터를 찾을 때 사용하는 식별자
+- **ClassName** : 엔티티와 연결된 Swift 클래스 이름. 코드에서 실제로 사용하는 타입
+
+| | EntityName | ClassName |
+|---|---|---|
+| 역할 | DB에서 데이터 찾는 식별자 | 코드에서 사용하는 Swift 타입 |
+| 정의 위치 | `.xcdatamodeld` | Swift 클래스 |
+| 예시 | `"Memo"` | `MemoEntity` |
+
+꼭 같을 필요는 없으며, DB 설계와 Swift 코드 네이밍을 독립적으로 관리할 수 있다.
 
 
 
