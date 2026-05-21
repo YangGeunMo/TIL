@@ -11,7 +11,7 @@
 ## 분류
 
 ### iOS
-- (작성 예정)
+- [CoreData](iOS/CoreData.md)
 
 ### Swift
 - [의존성 주입(DI) 3가지 방식과 의존관계 역전 원칙(DIP)](Swift/의존성_주입(DI)_3가지_방식과%20의존관계_역전%20원칙(DIP).md)
