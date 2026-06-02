@@ -1,14 +1,14 @@
-# [Design Pattern] 델리게이트 패턴 (Delegate Pattern) 마스터하기
-
-## 1. 개념 정의
+# 델리게이트 패턴 (Delegate Pattern)
+## 학습일
+ - 2026.06.02
+## 개념 정의
 
 - **델리게이트 패턴(Delegate Pattern)** 은 한 객체가 해야 할 일의 일부를 다른 객체가 대신하도록 위임하는 iOS 개발의 핵심 디자인 패턴이다.
 - **위임자 (Sender / Delegator)**: 이벤트가 발생하는 주체이다(예: `UITextField`, `UITableView`). 무슨 일이 일어났는지 대리인에게 알리는 역할만 담당한다.
 - **대리인 (Delegate)**: 이벤트를 전달받아 실제 비즈니스 로직을 처리하는 주체이다(예: `UIViewController`).
 
----
 
-## 2. 델리게이트 패턴을 사용하는 이유 (재사용성)
+## 델리게이트 패턴을 사용하는 이유 (재사용성)
 
 - **결합도 분리**: UI 컴포넌트 내부에 특정 비즈니스 로직을 직접 추가하면, 해당 컴포넌트는 다른 화면이나 용도로 재사용할 수 없게 된다.
 - **역할의 분리**:
@@ -18,7 +18,7 @@
 
 ---
 
-## 3. 장점과 단점
+## 장점과 단점
 
 ### 장점
 
@@ -28,12 +28,11 @@
 ### 단점 및 주의점
 
 - **메모리 누수(Memory Leak) 위험**: 대리인과 위임자가 서로를 강하게 참조(`Strong`)하면, 두 객체가 메모리에서 해제되지 않는 강한 순환 참조 현상이 발생할 수 있다.
-  - 💡 **해결책**: 이를 방지하기 위해 위임자 내부의 `delegate` 변수 앞에는 반드시 **`weak`** 키워드를 붙여서 약한 참조로 선언해야 한다.
+  - **해결책**: 이를 방지하기 위해 위임자 내부의 `delegate` 변수 앞에는 반드시 **`weak`** 키워드를 붙여서 약한 참조로 선언해야 한다.
 - **1:1 소통 구조의 한계**: 델리게이트 패턴은 기본적으로 하나의 위임자와 하나의 대리인이 소통하는 1:1 계약 관계이다. 1:N(다수)으로 이벤트를 동시에 전파해야 할 때는 사용할 수 없으므로 `NotificationCenter`나 `Combine` 등의 다른 도구를 고려해야 한다.
 
----
 
-## 4. 구체적인 구현 예시 (배달 앱과 음식점)
+## 구체적인 구현 예시 (배달 앱과 음식점)
 
 ```swift
 import Foundation
@@ -83,12 +82,17 @@ deliveryApp.didCancelOrder()
 ```
 
 ---
+프로토콜을 선언하고, DeliveryApp 클래스에서 delegate의 타입을 프로토콜 타입(DeliveryAppDelegate)으로 선언해서 해당 프로토콜을 채택한 어떤 클래스든 대리인으로 지정할 수 있다.
 
-## 5. 실전 적용 — `UITextFieldDelegate` 구현
+deliveryApp.delegate = chicken에서 chicken 인스턴스는 ChickenShop 타입이지만 DeliveryAppDelegate 프로토콜을 채택하고 있기 때문에 할당이 가능하다.
 
-`UITextField`(위임자)가 발생시키는 이벤트를 `ViewController`(대리인)가 처리하는 실제 iOS 코드 예시다.
+weak var delegate: DeliveryAppDelegate?는 힙 영역에 있는 chicken 인스턴스를 약하게 참조(weak reference) 하고 있고, 인스턴스 자체를 복사해서 저장하는 게 아니라 원본 객체를 가리키는 방식이다. 메서드 호출 시 그 인스턴스를 통해 코드 영역의 ChickenShop 메서드가 실행된다.
 
-### 메서드 호출 흐름
+## `UITextFieldDelegate` 구현
+
+`UITextField`(위임자)가 발생시키는 이벤트를 `ViewController`(대리인)가 처리하는 iOS 코드 예시.
+
+### 메서드 호출 
 
 | 순서 | 메서드 | 설명 | 반환값 |
 |------|--------|------|--------|
@@ -100,7 +104,7 @@ deliveryApp.didCancelOrder()
 | 6 | `textFieldShouldEndEditing` | 입력 종료 허락 여부 | `Bool` |
 | 7 | `textFieldDidEndEditing` | 입력이 완전히 끝남 | - |
 
-> 💡 `Should~` 메서드는 **허락 여부를 결정**하는 메서드로 `Bool`을 반환하고, `Did~` 메서드는 **이미 발생한 이벤트**를 알리는 메서드로 반환값이 없다.
+> `Should~` 메서드는 **허락 여부를 결정**하는 메서드로 `Bool`을 반환하고, `Did~` 메서드는 **이미 발생한 이벤트**를 알리는 메서드로 반환값이 없다.
 
 ### 구현 코드
 
@@ -160,3 +164,27 @@ extension ViewController: UITextFieldDelegate {
     }
 }
 ```
+
+## 6. 키보드 올리기 / 내리기 — First Responder
+ 
+| 메서드 | 설명 |
+|--------|------|
+| `textField.becomeFirstResponder()` | 텍스트필드에 포커스를 강제로 지정 → 키보드가 올라옴 |
+| `textField.resignFirstResponder()` | 텍스트필드의 포커스를 해제 → 키보드가 내려감 |
+| `self.view.endEditing(true)` | 현재 뷰의 모든 텍스트필드 포커스를 해제 → 키보드가 내려감 |
+ 
+### 구현 코드
+ 
+```swift
+// 응답 객체 - 특정 텍스트필드에 포커스를 주어 키보드를 올림, 텍스트 필드를 직접 터치하지 않더라도, 화면이 열리자마자 바로 글자를 입력하게 만들고 싶을 때
+textField.becomeFirstResponder()
+ 
+// 화면의 탭을 감지하는 메서드 - 빈 화면 탭 시 키보드를 내림, 사용자가 빈 화면을 터치하는 순간 호출되는 메서드 
+override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    self.view.endEditing(true) // 배경을 터치하면 어떤 키보드든 다 내려버린다
+}
+ 
+// 특정 텍스트필드의 포커스만 해제하여 키보드를 내림, 엔터(Return) 키가 눌렸을 때 키보드 내려감 
+textField.resignFirstResponder()
+```
+ 
