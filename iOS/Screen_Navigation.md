@@ -90,7 +90,7 @@ override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 ## 4. 직접 세그웨이
 
 ```
-Segue 만들기 (버튼 → VC 직접 연결) → shouldPerformSegue → prepare 자동 호출
+Segue 만들기 (버튼 → VC 직접 연결) → shouldPerformSegue(조건이 필요 없을때 없어도 됨) → prepare 자동 호출
 ```
 
 ```swift
