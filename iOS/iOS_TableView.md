@@ -63,7 +63,8 @@ Section 1 ─── row 0   (indexPath.section = 1, indexPath.row = 0)
 - 테이블뷰의 모든 위치는 **섹션 + 행** 으로 식별한다.
 - 섹션 없이 단순 리스트라면 `indexPath.row` 만 사용하면 된다.
 - 섹션이 여러 개라면 `indexPath.section` 도 함께 활용해야 한다.
-
+- 항상 테이블뷰를 구성할 때 섹션하고 몇 번째 행인지 정보를 가지고 있다.
+- IndexPath를 이용해 사용자가 선택한 셀의 위치를 알 수 있으며, 해당 위치를 통해 데이터를 가져올 수 있다.
 ---
 
 ## 5. UITableViewDelegate
