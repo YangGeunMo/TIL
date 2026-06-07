@@ -38,16 +38,12 @@ extension ViewController: UITableViewDataSource {
 
     // 테이블뷰에 몇 개의 셀을 표시할지 뷰컨트롤러에게 물어봄
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movieDataManager.getMovieData().count
+        // 데이터 개수 반환
     }
 
     // indexPath에 해당하는 셀의 구성을 뷰컨트롤러에게 물어봄
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // 재사용 큐에서 셀을 꺼내옴 (없으면 새로 생성)
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let data = movieDataManager.getMovieData()[indexPath.row]
-        cell.textLabel?.text = data.title
-        return cell
+        // 재사용 큐에서 셀을 꺼내와 데이터를 구성 후 반환
     }
 }
 ```
