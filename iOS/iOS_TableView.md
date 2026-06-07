@@ -1,11 +1,11 @@
-# TIL - iOS UITableView
+# iOS UITableView
 
 > 날짜: 2026-06-08  
 > 주제: UITableView 구조, DataSource/Delegate 패턴
 
 ---
 
-## 1. UITableView 구조
+## UITableView 구조
 
 ```
 UITableView
@@ -20,18 +20,18 @@ UITableView
 
 ---
 
-## 2. DataSource vs Delegate
+## DataSource vs Delegate
 
 | 프로토콜 | 역할 | 필수 여부 |
 |---|---|---|
-| `UITableViewDataSource` | **무엇을** 보여줄지 (데이터, 구성) | ✅ 필수 |
-| `UITableViewDelegate` | **어떻게** 반응할지 (동작, 이벤트) | ❌ 선택 |
+| `UITableViewDataSource` | **무엇을** 보여줄지 (데이터, 구성) |  필수 |
+| `UITableViewDelegate` | **어떻게** 반응할지 (동작, 이벤트) |  선택 |
 
 > 뷰컨트롤러가 두 프로토콜을 채택해서, 테이블뷰가 "물어보면" 답하는 구조다.
 
 ---
 
-## 3. UITableViewDataSource
+## UITableViewDataSource
 
 ```swift
 extension ViewController: UITableViewDataSource {
@@ -54,7 +54,7 @@ extension ViewController: UITableViewDataSource {
 
 ---
 
-## 4. IndexPath
+## IndexPath
 
 ```
 Section 0 ─── row 0   (indexPath.section = 0, indexPath.row = 0)
@@ -84,7 +84,7 @@ extension ViewController: UITableViewDelegate {
 
 ---
 
-## 6. 핵심 요약
+## 핵심 요약
 
 | 개념 | 설명 |
 |---|---|
@@ -92,3 +92,7 @@ extension ViewController: UITableViewDelegate {
 | DataSource | 셀 개수, 셀 구성 등 **데이터** 관련 |
 | Delegate | 셀 선택 등 **동작/이벤트** 관련 |
 | IndexPath | 셀의 위치 (section + row) |
+
+
+## Reference
+- 앨런 iOS 앱 개발 (15개의 앱을 만들면서 근본원리부터 배우는 UIKit) - MVVM까지
