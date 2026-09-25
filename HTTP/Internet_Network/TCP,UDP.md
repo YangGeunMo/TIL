@@ -17,6 +17,7 @@
 2. TCP 정보 생성 (전송하려는 메시지 데이터를 포함)
 3. IP 패킷 생성 (TCP 데이터를 포함)
 4. LAN 카드를 통해 실제 전송
+<img width="803" height="388" alt="image" src="https://github.com/user-attachments/assets/0579ce54-0cf0-4517-9e7e-b7288fffc044" />
 
 즉, **TCP가 데이터를 감싸고, 그 TCP를 다시 IP가 감싸서** 전달한다고 이해하면 된다.
 
@@ -29,6 +30,7 @@ TCP 세그먼트(패킷)에는 다음 정보가 담긴다.
 - 순서(Sequence) 정보
 - 검증(체크섬) 정보
 - 기타
+<img width="738" height="471" alt="image" src="https://github.com/user-attachments/assets/33115dae-46dd-4415-a68f-d0da54fa6ea9" />
 
 ## TCP의 특징
 
@@ -46,6 +48,9 @@ TCP는 신뢰할 수 있는 프로토콜이며, 현재 대부분의 통신에서
 - **ACK**: 요청 수락(확인)
 
 과정
+<img width="805" height="492" alt="image" src="https://github.com/user-attachments/assets/350d96f3-eb3b-4cb8-a40b-8e0b67f7b519" />
+
+
 
 1. 클라이언트 → 서버 : SYN 전송
 2. 서버 → 클라이언트 : SYN + ACK 전송
@@ -86,3 +91,8 @@ TCP는 신뢰할 수 있는 프로토콜이며, 현재 대부분의 통신에서
 
 - TCP: 3-way handshake로 연결을 맺는 데 시간이 걸리고, 데이터를 TCP/IP로 감싸는 과정(오버헤드)이 있어 상대적으로 느리다.
 - UDP: 연결 과정과 오버헤드가 거의 없어 TCP보다 빠르다. 단, 신뢰성 있는 통신이 필요하면 애플리케이션에서 추가 작업을 해줘야 한다.
+
+# 출처
+모든 개발자를 위한 HTTP 웹 기본 지식 - 섹션2. 인터넷 네트워크 - TCP,UDP 강의 일부
+- https://www.inflearn.com/course/http-%EC%9B%B9-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/dashboard?cid=326277
+  
