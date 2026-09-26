@@ -80,4 +80,9 @@ https://www.google.com:443/search?q=hello&hl=ko
 ### fragment
 
 - html 내부 북마크(앵커) 등에 사용한다. 예) `#section2`
-- **서버에는 전송되지 않으며**, 브라우저(클라이언트)에서 페이지 내 특정 위치로 이동시킬 때 사용된다.
+- 서버에는 전송되지 않으며, 브라우저(클라이언트)에서 페이지 내 특정 위치로 이동시킬 때 사용된다.
+
+#출처
+
+모든 개발자를 위한 HTTP 웹 기본 지식
+- https://www.inflearn.com/course/http-%EC%9B%B9-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/dashboard?cid=326277
