@@ -68,6 +68,7 @@ HTML, TEXT, IMAGE, 음성, 영상, 파일, JSON, XML(API) 등 거의 모든 형�
 - Stateless는 클라이언트의 요청을 **어떤 서버가 처리해도 문제가 없다**.
   상태를 서버에 보관하지 않기 때문에, 중간에 서버 장애가 발생해도 다른 서버가 이어서 응답해줄 수 있다.
 - 이런 장점 때문에 **스케일 아웃(서버의 수평 확장)** 에 유리하다.
+<img width="840" height="492" alt="image" src="https://github.com/user-attachments/assets/44bc7c0e-0f54-4a34-8339-1b608b349aad" />
 
 반대로 **Stateful**은 요청을 처리하려면 항상 같은 서버가 유지되어야 한다.
 그래서 서버에 장애가 발생하면, 상태 정보가 없는 다른 서버는 이어서 작업을 처리할 수 없다.
@@ -109,3 +110,8 @@ HTML, TEXT, IMAGE, 음성, 영상, 파일, JSON, XML(API) 등 거의 모든 형�
 같은 시간에 딱 맞춰 몰리는 대용량 트래픽(예: 수강신청, 명절 KTX 예매 등)을
 서버 개발자들이 스테이트리스 특성을 잘 이해하고 구현해야
 문제없이 처리할 수 있다. 서버 개발에서 어려운 업무 중 하나다.
+
+
+# 출처
+모든 개발자를 위한 HTTP 웹 기본 지식
+- https://www.inflearn.com/course/http-%EC%9B%B9-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/dashboard?cid=326277
