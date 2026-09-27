@@ -117,6 +117,7 @@ POST 메서드는 **대상 리소스가 가진 고유한 의미 체계에 따라
 <img width="599" height="328" alt="image" src="https://github.com/user-attachments/assets/238d5dba-f81f-4043-967e-266d87dab786" />
 
 참고: PUT은 완전히 리소스를 대처한다.
+
 <img width="607" height="346" alt="image" src="https://github.com/user-attachments/assets/24f5ab55-9cc9-4fea-b93e-1ca70259ca9a" />
 <img width="610" height="347" alt="image" src="https://github.com/user-attachments/assets/03b567b1-a27d-4cd7-860f-bc7ebe8af282" />
 
