@@ -5,8 +5,9 @@
 
 색상 별로 잘 알아 두자
 
-# HTTP 응답 메시지 구조 
-<img width="1441" height="445" alt="image" src="https://github.com/user-attachments/assets/27aa94b3-de30-4821-a4e8-e1d07972e11b" />
+# HTTP 요청 메시지 구조 
+
+<img width="606" height="266" alt="image" src="https://github.com/user-attachments/assets/9ae5d0f8-9529-4734-83df-daecca84fb85" />
 
 
 ### 시작 라인 - 요청 메시지
