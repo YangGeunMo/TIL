@@ -62,6 +62,7 @@ public class HelloData {
 - @ModelAttribute도 생략이 가능하다. 그런데 만약 @RequestParam도 생략된 메서드가 있을 경우 헷갈릴수 있는데
 - String, int, Integer 등 단순 타입은 @RequestParam이 적용된다.
 - 나머지는 @ModelAttribute이 적용된다 (argument resolver 로 지정해둔 타입 외 예시: HttpServletResponse response)
+- @RequestParam, @ModelAttribute는 GET - 쿼리 파라미터, POST - HTML Form 요청 데이터 전달 2가지 방법에 해당한다. 
 
 # 출처
 스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술
