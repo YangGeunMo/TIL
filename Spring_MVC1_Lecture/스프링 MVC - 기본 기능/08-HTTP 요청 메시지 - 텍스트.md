@@ -83,6 +83,9 @@
 - 요청 파라미터를 조회 : @RequestParam ,@ModelAttribute
 - HTTP 메시지 바디를 직접 조회: @RequestBody
 
+### 참고
+- 스프링MVC 내부에서 HTTP 메시지 바디를 읽어서 문자나 객체로 변환해서 전달해주는데, 이때 HTTP 메시지컨버터(`HttpMessageConverter`)라는 기능을 사용한다.
+
 # 출처
 스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술
 - https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard?cid=326674
