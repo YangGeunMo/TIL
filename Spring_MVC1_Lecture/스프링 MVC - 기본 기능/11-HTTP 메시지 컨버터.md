@@ -129,11 +129,11 @@ void hello(@RequestBody HelloData data) {}
 ~~~
 
 @RequestBody에 요청이 들어오면:
-
+~~~
 0 = ByteArrayHttpMessageConverter
 1 = StringHttpMessageConverter
 2 = MappingJackson2HttpMessageConverter
-
+~~~
 각 컨버터가 조건을 만족하는지 순서대로 확인한다.
 
 1. ByteArrayHttpMessageConverter
