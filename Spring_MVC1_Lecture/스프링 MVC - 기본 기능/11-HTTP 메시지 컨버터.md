@@ -171,6 +171,71 @@ HTTP 요청 → 컨트롤러에서 `@RequestBody`, `HttpEntity` 파라미터 사
 2. 조건 만족하면 `write()` 호출한다.
    - 객체를 HTTP 응답 메시지 바디에 데이터로 변환해서 생성
 
+---
+
+## 정리
+@RequestBody, HttpEntity를 사용한 요청 처리와 @ResponseBody, HttpEntity를 사용한 응답 처리에서 
+HTTP 메시지 컨버터가 적용된다.
+
+메시지 컨버터는 요청/응답의 타입에 따라 적절한 컨버터를 선택한다.
+이때 컨버터가 선택되기 위해서는 두 가지 조건을 만족해야 한다:
+1. 대상 클래스 타입을 지원하는가
+2. 요청/응답의 미디어 타입(Content-Type, Accept)을 지원하는가
+
+두 조건을 모두 만족하는 컨버터가 선택되어 데이터를 변환한다.
+
+### HTTP 메시지 컨버터 예시
+
+- **ByteArrayHttpMessageConverter**
+  - 클래스 타입: byte[]
+  - 미디어 타입: */* (모든 형식)
+
+- **StringHttpMessageConverter**
+  - 클래스 타입: String
+  - 미디어 타입: */* (모든 형식)
+
+- **MappingJackson2HttpMessageConverter**
+  - 클래스 타입: 객체, HashMap
+  - 미디어 타입: application/json
+
+### 요청 처리 (JSON → 객체)
+
+클라이언트가 JSON 형식의 요청 본문을 보내면, 메시지 컨버터의 read() 메서드가 호출된다.
+MappingJackson2HttpMessageConverter가 JSON 문자열을 읽어서 
+@RequestBody의 대상 클래스 타입(예: ProductDto)의 객체로 변환한다.
+이때 JSON의 필드명과 객체의 프로퍼티명을 자동으로 매칭해서 값을 넣는다.
+
+```java
+// 요청: POST /api/products
+// Content-Type: application/json
+// {"name": "노트북", "price": 1500000}
+
+@PostMapping("/api/products")
+public ResponseEntity<ProductDto> create(@RequestBody ProductDto dto) {
+    // MappingJackson2HttpMessageConverter가 JSON → ProductDto로 변환
+    // ProductDto(name=노트북, price=1500000) 자동 생성
+    return ResponseEntity.ok(dto);
+}
+```
+
+### 응답 처리 (객체 → JSON)
+
+컨트롤러가 Java 객체를 반환하면, 메시지 컨버터의 write() 메서드가 호출된다.
+MappingJackson2HttpMessageConverter가 객체의 프로퍼티를 읽어서 
+JSON 형식의 문자열로 변환해서 응답 본문에 담는다.
+
+```java
+// 응답: GET /api/products/1
+
+@GetMapping("/api/products/{id}")
+public ResponseEntity<ProductDto> getProduct(@PathVariable Long id) {
+    ProductDto dto = new ProductDto("노트북", 1500000);
+    // MappingJackson2HttpMessageConverter가 ProductDto → JSON으로 변환
+    // {"name": "노트북", "price": 1500000} 자동 생성
+    return ResponseEntity.ok(dto);
+}
+```
+---
 # 출처
 스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술
 - https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1/dashboard?cid=326674
