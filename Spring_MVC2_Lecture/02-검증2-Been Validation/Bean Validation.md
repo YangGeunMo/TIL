@@ -207,8 +207,9 @@ groups 기능을 적용해서 각각 다르게 검증은 가능한데 복잡도�
 - @Valid, @Validated는 `HttpMessageConverter` (`@RequestBody` )에도 적용할 수 있다.
 
 #### 복습
-`@ModelAttribute` 는 HTTP 요청 파라미터(URL 쿼리 스트링, POST Form)를 다룰 때 사용한다.
-`@RequestBody` 는 HTTP Body의 데이터를 객체로 변환할 때 사용한다. 주로 API JSON 요청을 다룰 때 사용 한다.
+
+- `@ModelAttribute` 는 HTTP 요청 파라미터(URL 쿼리 스트링, POST Form)를 다룰 때 사용한다.
+- `@RequestBody` 는 HTTP Body의 데이터를 객체로 변환할 때 사용한다. 주로 API JSON 요청을 다룰 때 사용 한다.
 
 #### API경우 3가지 생각하기
 - 성공 요청: 성공
@@ -216,6 +217,7 @@ groups 기능을 적용해서 각각 다르게 검증은 가능한데 복잡도�
 - 검증 오류 요청: JSON을 객체로 생성하는 것은 성공했고, 검증에서 실패함
 
 #### @ModelAttribute vs @RequestBody
+
 - `@ModelAttribute` 는 필드 단위로 정교하게 바인딩이 적용된다. 특정 필드가 바인딩 되지 않아도 나머지 필드는 정상 바인딩 되고, Validator를 사용한 검증도 적용할 수 있다.
 - `@RequestBody` 는 HttpMessageConverter 단계에서 JSON 데이터를 객체로 변경하지 못하면 이후 단계 자체가 진행되지 않고 예외가 발생한다. 컨트롤러도 호출되지 않고, Validator도 적용할 수 없다. 
   - 따라서 메시지 컨버터의 작동이 성공해서 `ItemSaveForm` 객체를 만들어야 `@Valid` , `@Validated` 가 적용된다
