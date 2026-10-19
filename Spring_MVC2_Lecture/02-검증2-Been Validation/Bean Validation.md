@@ -14,10 +14,10 @@ implementation 'org.springframework.boot:spring-boot-starter-validation'
 
 ## 검증 어노테이션
 
-`@NotBlank` : 빈값 + 공백만 있는 경우를 허용하지 않는다.
-`@NotNull` : `null` 을 허용하지 않는다.
-`@Range(min = 1000, max = 1000000)` : 범위 안의 값이어야 한다.
-`@Max(9999)` : 최대 9999까지만 허용한다.
+- `@NotBlank` : 빈값 + 공백만 있는 경우를 허용하지 않는다.
+- `@NotNull` : `null` 을 허용하지 않는다.
+- `@Range(min = 1000, max = 1000000)` : 범위 안의 값이어야 한다.
+- `@Max(9999)` : 최대 9999까지만 허용한다.
 
 검증 어노테이션을 적용
 ~~~java
